@@ -5,10 +5,17 @@ import {
 	Subjects,
 } from '@sirmctickets/commontickets';
 import { queueGroupName } from './queue-group-name';
+import { expirationQueue } from '../../queues/expiration-queue';
 
 export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
 	readonly subject = Subjects.OrderCreated;
 	queueGroupName = queueGroupName;
 
-	onMessage(data: OrderCreatedEvent['data'], msg: Message) {}
+	async onMessage(data: OrderCreatedEvent['data'], msg: Message) {
+		await expirationQueue.add({
+			orderId: data.id,
+		});
+
+		msg.ack();
+	}
 }
