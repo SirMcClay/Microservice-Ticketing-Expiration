@@ -18,7 +18,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"@sirmctickets/commontickets": "^1.0.8",
+		"@sirmctickets/commontickets": "^1.0.9",
 		"@types/bull": "^3.14.4",
 		"bull": "^3.20.0",
 		"ts-node-dev": "^1.0.0",
